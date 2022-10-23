@@ -1,0 +1,10 @@
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
+                      http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+	version="3.1" metadata-complete="true">
+	<!-- 如果是用mvn命令生成的xml，需要修改servlet版本为3.1 -->
+	<welcome-file-list>
+	<welcome-file>index.jsp</welcome-file><!-- 默认访问页设置 -->
+	<welcome-file>index.html</welcome-file><!-- 默认访问页设置,第二选择，如果两者都没有，则会报错误404 -->
+	</welcome-file-list>
+</web-app>	

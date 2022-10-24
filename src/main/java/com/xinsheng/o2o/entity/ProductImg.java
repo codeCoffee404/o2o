@@ -46,5 +46,5 @@ public class ProductImg {
 	public void setProductId(Long productId) {
 		this.productId = productId;
 	}
-	
+	 
 }

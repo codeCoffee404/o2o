@@ -8,8 +8,8 @@ public class HeadLine {
 	private String lineName;
 	private String lineLink;
 	private String lineImg;
-	private Integer priority;
-	private Integer enableStatus;
+	private Integer priority;//权重优先级，排列
+	private Integer enableStatus;//状态，1可用   0不可用
 	private Date createTime;
 	private Date lastEditTime;
 	public Long getLineId() {

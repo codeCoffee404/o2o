@@ -29,4 +29,7 @@ eclipse2018-9<br>
 - 可通过web.xml配置项目的首加载页，即http://localhost:8080/o2o 即可访问项目
 - 实体类中的数据类型都是大写字母开头Integer   String    Date   Long
 - 关系型数据库mysql的索引index就像词典的偏旁部首，但物极必反，要维护。
+- dao层作用，与数据相关的操作，文件读写，redis
+- dto弥补entity的不足
+- interceptor拦截器
 

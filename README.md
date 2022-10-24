@@ -32,4 +32,5 @@ eclipse2018-9<br>
 - dao层作用，与数据相关的操作，文件读写，redis
 - dto弥补entity的不足
 - interceptor拦截器
+- WEB-INF的安全性，浏览器输入URL，不能访问其目录下HTML
 

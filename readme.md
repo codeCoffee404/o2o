@@ -33,4 +33,5 @@ eclipse2018-9<br>
 - dto弥补entity的不足
 - interceptor拦截器
 - WEB-INF的安全性，浏览器输入URL，不能访问其目录下HTML
+- mapper.xml里面的<select>标签id即对应的方法接口名，在该标签下写SQL语句。例：
 

@@ -121,6 +121,11 @@
             <artifactId>c3p0</artifactId>
             <version>0.9.1.2</version>
         </dependency>
+         <dependency>
+      <groupId>org.jboss</groupId>
+      <artifactId>jboss-vfs</artifactId>
+      <version>3.2.15.Final</version>
+    </dependency>
     </dependencies>
     <build>
         <finalName>o2o</finalName>
@@ -128,7 +133,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-complier-plugin</artifactId>
-                <version>3.6.1</version>
+                <version>3.6</version>
                 <configuration>
                     <resourse>1.8</resourse>
                     <target>1.8</target>

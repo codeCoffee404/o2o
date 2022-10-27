@@ -42,9 +42,14 @@ eclipse2018-9<br>
   ```
 
   1.xml 文件中是有中文注释，有的话全部删除
-  \2. xml 的文件名 是否与 dao 接口名保持一致
-
+  
+  2. xml 的文件名 是否与 dao 接口名保持一致
+  
   [参考链接]:https://blog.csdn.net/weixin_43570367/article/details/103147854
-
+  
+  
+  
+  - impl实现层 接口 用implements  + 对应实现类
+  
   
 

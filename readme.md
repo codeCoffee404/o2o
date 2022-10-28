@@ -32,9 +32,8 @@ eclipse2018-9<br>
 - dao层作用，与数据相关的操作，文件读写，redis
 - dto弥补entity的不足
 - interceptor拦截器
-- --------------------------------------------------------------------------------------------
 - WEB-INF的安全性，浏览器输入URL，不能访问其目录下HTML
-- mapper.xml里面的<select>标签id即对应的方法接口名，在该标签下写该方法所需要的SQL语句。例：
+- mapper.xml里面的<select>标签id即对应的方法接口名，在该标签下写该方法所需要的SQL语句。例：<br>
 
 ```xml
 <mapper namespace="com.xinsheng.o2o.dao.AreaDao">
@@ -49,7 +48,7 @@ eclipse2018-9<br>
 </mapper>
 ```
 
-对应dao层方法：
+对应dao层方法：<br>
 
 ```java
 package com.xinsheng.o2o.dao;
@@ -70,23 +69,25 @@ public interface AreaDao {
 
 
 
-- ***主要检查包名，namespace，方法名等能否对应上***。开发过程中有时候敲错一个字母都有问题，需要认真的检查。对于这块地方，建议粘贴复制，不要自己手敲。  本次的bug是包名后面出现了空格
+- ***主要检查包名，namespace，方法名等能否对应上***。开发过程中有时候敲错一个字母都有问题，需要认真的检查。对于这块地方，建议粘贴复制，不要自己手敲。  本次的bug是包名后面出现了空格<br>
 
   ```xml
   <mapper namespace="com.xinsheng.o2o.dao.AreaDao     空格          ">
   ```
 
-  1.xml 文件中是有中文注释，有的话全部删除
+  1.xml 文件中是有中文注释，有的话全部删除<br>
 
-  2. xml 的文件名 是否与 dao 接口名保持一致
+  2. xml 的文件名 是否与 dao 接口名保持一致<br>
 
   [参考链接]:https://blog.csdn.net/weixin_43570367/article/details/103147854
 
-  
+  <br>
 
+  
+  
   - impl实现层 接口 用implements  + 对应实现类
   - RequestMethod.POST 相对安全，，而GET 的参数信息都会反映在URL上
   - JUnit测试要写@Test注解
-
+  
   
 

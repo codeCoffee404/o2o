@@ -16,7 +16,7 @@ public class ShopCategory {
 	public Long getShopCategoryId() {
 		return shopCategoryId;
 	}
-	public void setShopCategoryId(Long shopCategoryId) {
+	public  void setShopCategoryId(Long shopCategoryId) {
 		this.shopCategoryId = shopCategoryId;
 	}
 	public String getShopCategoryName() {

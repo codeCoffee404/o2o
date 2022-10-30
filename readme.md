@@ -88,6 +88,8 @@ public interface AreaDao {
   - impl实现层 接口 用implements  + 对应实现类
   - RequestMethod.POST 相对安全，，而GET 的参数信息都会反映在URL上
   - JUnit测试要写@Test注解
+  <insert id="insertShop" useGeneratedKeys="true" keyProperty="shopId"
+		keyColumn="shop_id">属性之间要有空格
   
   
 

@@ -15,10 +15,10 @@ public class ImageUtil {
 		String basePath = Thread.currentThread().getContextClassLoader().getResource("")
 	.getPath();
 		Thumbnails.of(new File("E:\\ssm\\o2o\\src\\main\\resources\\study.jpg"))
-		.size(200, 200)
-		.watermark(Positions.TOP_RIGHT,ImageIO.read(new File(basePath+"/watermark.png")),0.25f)
+		.size(460, 460)
+		.watermark(Positions.BOTTOM_RIGHT,ImageIO.read(new File(basePath+"/watermark.png")),0.15f)
 		.outputQuality(0.8f)
-		.toFile("E:\\ssm\\o2o\\src\\main\\resources\\studynew.jpg")
+		.toFile("E:\\ssm\\o2o\\src\\main\\resources\\studynew3.jpg")
 		
 		
 		

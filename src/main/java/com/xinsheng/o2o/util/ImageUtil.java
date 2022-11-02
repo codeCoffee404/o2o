@@ -3,6 +3,7 @@ package com.xinsheng.o2o.util;
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Random;
 
 import javax.imageio.ImageIO;
@@ -40,20 +41,25 @@ public class ImageUtil {
 	}
 	
 	/*
-	 * 
+	 *  创建目标路径所涉及到的目录，即/home/xxxx/image/xxx,jpg
+	 *  那么home  xxxx  image这三个文件夹都得自动创建  
 	 */
 	private static void makeDirPath(String targetAddr) {
-		// TODO Auto-generated method stub
+		String realFileParentPath = PathUtil.getImgBasePath() + targetAddr;
+		File dirPath = new File(realFileParentPath);
+		if (!dirPath.exists()) {
+			dirPath.mkdirs();
+		}
 		
 	}
 
 
 	/*
-	 * 
+	 * 获取输入文件的扩展名
 	 */
-	private static String getFileExtension(CommonsMultipartFile thumbnail) {
-		// TODO Auto-generated method stub
-		return null;
+	private static String getFileExtension(CommonsMultipartFile cFile) {
+		String originalFileName= cFile.getOriginalFilename();
+		return originalFileName.substring(originalFileName.lastIndexOf("."));
 	}
 
 
@@ -61,8 +67,9 @@ public class ImageUtil {
 	 * 生成随机文件名，因为不能一样，采用年月日时分秒+五位随机数
 	 */
 	private static String getRandomFileName() {
-		// TODO Auto-generated method stub
-		return null;
+		int rannum = r.nextInt(89999) + 10000;
+		String nowTimeStr = sDateFormat.format(new Date());
+			return nowTimeStr+rannum;
 	}
 
 

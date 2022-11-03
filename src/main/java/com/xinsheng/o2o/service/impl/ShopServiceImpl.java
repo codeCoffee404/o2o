@@ -12,11 +12,12 @@ import com.xinsheng.o2o.dao.ShopDao;
 import com.xinsheng.o2o.dto.ShopExecution;
 import com.xinsheng.o2o.entity.Shop;
 import com.xinsheng.o2o.enums.ShopStateEnum;
+import com.xinsheng.o2o.exceptions.ShopOperationException;
 import com.xinsheng.o2o.service.ShopService;
 import com.xinsheng.o2o.util.ImageUtil;
 import com.xinsheng.o2o.util.PathUtil;
 
-import exceptions.ShopOperationException;
+
 //这一层就是实现service层未实现的方法
 public class ShopServiceImpl implements ShopService{
 	@Autowired

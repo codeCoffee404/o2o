@@ -77,7 +77,7 @@ public interface AreaDao {
 
   1.xml 文件中是有中文注释，有的话全部删除<br>
 
-  2. xml 的文件名 是否与 dao 接口名保持一致<br>
+  1. xml 的文件名 是否与 dao 接口名保持一致<br>
 
   [参考链接]:https://blog.csdn.net/weixin_43570367/article/details/103147854
 
@@ -94,3 +94,27 @@ public interface AreaDao {
   
 
 mybatis支持动态SQL语句，也就是更新A而不更新B、更新B而不更新A、两者都更新的情况那就要写三条语句，那利用mybatis的，set标签即可用一条实现，例如：
+
+```xml
+<update id="updateShop" parameterType="com.xinsheng.o2o.entity.Shop">
+		update tb_shop
+		<set>
+			<if test="shopName != null">shop_name=#{shopName},</if>
+			<if test="shopDesc != null">shop_desc=#{shopDesc},</if>
+			<if test="shopAddr != null">shop_addr=#{shopAddr},</if>
+			<if test="phone != null">phone=#{phone},</if>
+			<if test="shopImg != null">shop_img=#{shopImg},</if>
+			<if test="priority != null">priority=#{priority},</if>
+			<if test="lastEditTime != null">last_edit_time=#{lastEditTime},</if>
+			<if test="enableStatus != null">enable_status=#{enableStatus},</if>
+			<if test="advice != null">advice=#{advice},</if>
+			<if test="area != null">area_id=#{area.areaId},</if>
+			<if test="shopCategory != null">shop_category_id=#{shopCategory.shopCategoryId},</if>
+		</set>
+		where shop_id=#{shopId}
+	
+	</update>
+```
+
+[图片处理工具Thumbnail]([示例 ·咕咕鸟/缩略图维基 (github.com)](https://github.com/coobird/thumbnailator/wiki/Examples))
+

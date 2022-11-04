@@ -1,10 +1,10 @@
 package com.xinsheng.o2o.service.impl;
 
-import java.io.File;
-import java.nio.file.Path;
+
 import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
@@ -19,13 +19,14 @@ import com.xinsheng.o2o.util.PathUtil;
 
 
 //这一层就是实现service层未实现的方法
+@Service
 public class ShopServiceImpl implements ShopService{
 	@Autowired
 	private ShopDao shopDao;
 	
 	@Override
 	@Transactional
-	public ShopExecution addShop(Shop shop, CommonsMultipartFile shopImg) {
+	public ShopExecution addShop(Shop shop, CommonsMultipartFile shopImg) throws ShopOperationException {
 		if(shop == null) {//如果店铺信息为空，则返回枚举类型的null_shop
 			return new ShopExecution(ShopStateEnum.NULL_SHOP);	
 		}
@@ -66,10 +67,10 @@ public class ShopServiceImpl implements ShopService{
 		return new ShopExecution(ShopStateEnum.CHECK,shop);//
 	}
 
-	private void addShopImg(Shop shop, File shopImg) {
-		// TODO Auto-generated method stub
-		
-	}
+//	private void addShopImg(Shop shop, File shopImg) {
+//		// TODO Auto-generated method stub
+//		
+//	}
 
 	private void addShopImg(Shop shop, CommonsMultipartFile shopImg) {
 		//获取shop图片目录的相对值路径

@@ -8,7 +8,9 @@ import com.xinsheng.o2o.dto.ShopExecution;
 import com.xinsheng.o2o.entity.Shop;
 
 public interface ShopService {
-	ShopExecution addShop(Shop shop ,CommonsMultipartFile shopImg);
+	ShopExecution addShop(Shop shop ,CommonsMultipartFile shopImg) throws RuntimeException ;
+
+	
 
 
 

@@ -22,7 +22,7 @@ public class PathUtil {
 	 
 		public static String getShopImagePath(long shopId) {//将各自店铺的店铺图片存放在各自的文件夹下，用shop_id区别
 			
-			String imagePath = "/upload/item/shop/" + shopId +  "/";
+			String imagePath = "upload/item/shop/" + shopId +  "/";
 			return imagePath.replace("/", seperator);//反斜杠也用系统的来替换
 			
 		}

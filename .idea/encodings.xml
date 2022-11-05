@@ -8,5 +8,6 @@
     <file url="file://$PROJECT_DIR$/src/main/java/com/xinsheng/o2o/util/ImageUtil.java" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/xinsheng/o2o/util/PathUtil.java" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/test/java/com/xinsheng/o2o/dao/ShopDaoTest.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/test/java/com/xinsheng/o2o/service/ShopServiceTest.java" charset="GBK" />
   </component>
 </project>

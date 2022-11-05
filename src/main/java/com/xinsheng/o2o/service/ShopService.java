@@ -1,6 +1,6 @@
 package com.xinsheng.o2o.service;
 
-import java.io.File;
+
 
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 

@@ -118,3 +118,7 @@ mybatis支持动态SQL语句，也就是更新A而不更新B、更新B而不更�
 
 [图片处理工具Thumbnail]([示例 ·咕咕鸟/缩略图维基 (github.com)](https://github.com/coobird/thumbnailator/wiki/Examples))
 
+[博客项目集成PDF.js后，文件在阿里云对象存储oss后出现跨域问题解决方案](https://blog.csdn.net/MASILEJFOAISEGJIAE/article/details/126162430)
+
+
+

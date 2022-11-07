@@ -5,6 +5,7 @@
     <file url="file://$PROJECT_DIR$/src/main/java/com/xinsheng/o2o/entity/Area.java" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/xinsheng/o2o/enums/ShopStateEnum.java" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/xinsheng/o2o/service/impl/ShopServiceImpl.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/xinsheng/o2o/util/HttpServletRequestUtil.java" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/xinsheng/o2o/util/ImageUtil.java" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/xinsheng/o2o/util/PathUtil.java" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/test/java/com/xinsheng/o2o/dao/ShopDaoTest.java" charset="GBK" />

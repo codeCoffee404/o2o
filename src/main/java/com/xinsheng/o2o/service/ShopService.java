@@ -1,7 +1,5 @@
 package com.xinsheng.o2o.service;
 
-
-
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import com.xinsheng.o2o.dto.ShopExecution;

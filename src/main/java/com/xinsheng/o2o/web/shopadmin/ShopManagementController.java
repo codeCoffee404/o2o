@@ -18,7 +18,7 @@ import org.springframework.web.multipart.commons.CommonsMultipartFile;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.sun.imageio.plugins.common.ImageUtil;
+//import com.sun.imageio.plugins.common.ImageUtil;
 import com.xinsheng.o2o.dto.ShopExecution;
 import com.xinsheng.o2o.entity.PersonInfo;
 import com.xinsheng.o2o.entity.Shop;

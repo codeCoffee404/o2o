@@ -4,6 +4,8 @@
 $(function() {
 	var initUrl='/o2o/shopadmin/getshopinitinfo';//定义店铺初始化信息
 	var registerShopUrl= '/o2o/shopadmin/registershop';
+	getShopInitInfo();
+	alert(initUrl);
 	function getShopInitInfo() {
 		$.getJSON(initUrl,function(data){
 			if (data.success) {
@@ -41,7 +43,29 @@ $(function() {
 						return!this.selected;//双重否定表肯定
 					}).data('id')	
 			};
-			
+			var shopImg =$('#shop-img')[0].files[0];
+			var formData = new FormData();
+			formData.append('shopImg',shopImg);
+			formData.append('shopStr',JSON.stringify(shop));
+			$.ajax({
+				url : registerShopUrl,
+				type : 'POST',
+				data : formData,
+				contentType : false,
+				proceesData : false,
+				cache : false,
+				success : function(data){
+					if (data.success) {
+						$.toast('提交成功！');
+					} else {
+						$.toast('提交失败' + data.errMsg);
+					}
+					
+					
+					
+				}
+				
+			});
 			
 		});
 				

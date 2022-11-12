@@ -33,7 +33,13 @@ eclipse2018-9<br>
 - dto弥补entity的不足
 - interceptor拦截器
 - WEB-INF的安全性，浏览器输入URL，不能访问其目录下HTML
-- mapper.xml里面的<select>标签id即对应的方法接口名，在该标签下写该方法所需要的SQL语句。例：<br>
+- mapper.xml里面的
+
+  ```xml
+  <select></select>
+  ```
+
+  标签id即对应的方法接口名，在该标签下写该方法所需要的SQL语句。例：<br>
 
 ```xml
 <mapper namespace="com.xinsheng.o2o.dao.AreaDao">
@@ -72,28 +78,29 @@ public interface AreaDao {
 - ***主要检查包名，namespace，方法名等能否对应上***。开发过程中有时候敲错一个字母都有问题，需要认真的检查。对于这块地方，建议粘贴复制，不要自己手敲。  本次的bug是包名后面出现了空格<br>
 
   ```xml
-  <mapper namespace="com.xinsheng.o2o.dao.AreaDao     空格          ">
+  <mapper namespace="com.xinsheng.o2o.dao.AreaDao     空格          "></mapper>
   ```
 
   1.xml 文件中是有中文注释，有的话全部删除<br>
 
-  1. xml 的文件名 是否与 dao 接口名保持一致<br>
-
-  [参考链接]:https://blog.csdn.net/weixin_43570367/article/details/103147854
-
-  <br>
+  ​         xml 的文件名 是否与 dao 接口名保持一致[参考链接](https://blog.csdn.net/weixin_43570367/article/details/103147854)<br>
 
   
-  
+
   - impl实现层 接口 用implements  + 对应实现类
-  - RequestMethod.POST 相对安全，，而GET 的参数信息都会反映在URL上
-  - JUnit测试要写@Test注解
-  	<insert id="insertShop" useGeneratedKeys="true" keyProperty="shopId"
-		keyColumn="shop_id">属性之间要有空格
-  
-  
 
-mybatis支持动态SQL语句，也就是更新A而不更新B、更新B而不更新A、两者都更新的情况那就要写三条语句，那利用mybatis的，set标签即可用一条实现，例如：
+  - RequestMethod.POST 相对安全，，而GET 的参数信息都会反映在URL上
+  
+  - JUnit测试要写@Test注解
+  
+    属性之间要有空格
+  
+	  ```xml
+    <insert id="insertShop" useGeneratedKeys="true" keyProperty="shopId" keyColumn="shop_id"></insert>
+    ```
+  
+    mybatis支持动态SQL语句，也就是更新A而不更新B、更新B而不更新A、两者都更新的情况那就要写三条语句，那利用mybatis的，set标签即可用一条实现，例如：
+  
 
 ```xml
 <update id="updateShop" parameterType="com.xinsheng.o2o.entity.Shop">
@@ -116,7 +123,7 @@ mybatis支持动态SQL语句，也就是更新A而不更新B、更新B而不更�
 	</update>
 ```
 
-[图片处理工具Thumbnail]([示例 ·咕咕鸟/缩略图维基 (github.com)](https://github.com/coobird/thumbnailator/wiki/Examples))
+[图片处理工具Thumbnail](https://github.com/coobird/thumbnailator/wiki/Examples)
 
 [博客项目集成PDF.js后，文件在阿里云对象存储oss后出现跨域问题解决方案](https://blog.csdn.net/MASILEJFOAISEGJIAE/article/details/126162430)
 
@@ -128,3 +135,16 @@ mybatis支持动态SQL语句，也就是更新A而不更新B、更新B而不更�
 
 第一种是将被调用的方法设置成静态方法；
 第二种是new本类，然后通过实例来调用。
+
+**BUG**
+
+在mybatis里面的ShopCategoryDao.xml里面有parentId,而在实体类里面private ShopCategory parent;漏掉了id
+
+Error evaluating expression 'shopCategoryCondition.parentId!=null'. Cause: org.apache.ibatis.ognl.NoSuchPropertyException: com.xinsheng.o2o.entity.ShopCategory.parentId
+
+
+
+
+
+
+

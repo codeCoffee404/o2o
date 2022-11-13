@@ -12,3 +12,4 @@ public class ShopOperationException extends RuntimeException {
 		super(msg);
 	}
 }
+  

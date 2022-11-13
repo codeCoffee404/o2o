@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -23,6 +24,8 @@ import com.xinsheng.o2o.dto.ShopExecution;
 import com.xinsheng.o2o.entity.PersonInfo;
 import com.xinsheng.o2o.entity.Shop;
 import com.xinsheng.o2o.enums.ShopStateEnum;
+import com.xinsheng.o2o.service.AreaService;
+import com.xinsheng.o2o.service.ShopCategoryService;
 import com.xinsheng.o2o.service.ShopService;
 import com.xinsheng.o2o.util.HttpServletRequestUtil;
 import com.xinsheng.o2o.util.PathUtil;
@@ -32,6 +35,25 @@ import com.xinsheng.o2o.util.ImageUtil;
 public class ShopManagementController {
 	@Autowired
 	private ShopService shopService;
+	@Autowired
+	private ShopCategoryService shopCategoryService;
+	@Autowired
+	private AreaService areaService;
+	
+	@RequestMapping(value="/getshopinitinfo",method=RequestMethod.GET)
+	@ResponseBody
+	private Map<String,Object> getshopinitinfo(){
+		Map<String,Object>  modelMap = new HashMap<String,Object>();
+		
+		
+		
+		
+		
+		
+		return modelMap;
+		 
+		
+	}
 	@RequestMapping(value="/registershop",method=RequestMethod.POST)
 	@ResponseBody
 	private Map<String,Object> registerShop(HttpServletRequest request){

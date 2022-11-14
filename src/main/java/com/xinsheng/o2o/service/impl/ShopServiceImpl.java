@@ -24,7 +24,6 @@ public class ShopServiceImpl implements ShopService{
 	@Autowired
 	private ShopDao shopDao;
 	
-	@Override
 	@Transactional
 	public ShopExecution addShop(Shop shop, CommonsMultipartFile shopImg) throws ShopOperationException {
 		if(shop == null) {//如果店铺信息为空，则返回枚举类型的null_shop

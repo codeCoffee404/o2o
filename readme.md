@@ -144,8 +144,5 @@ Error evaluating expression 'shopCategoryCondition.parentId!=null'. Cause: org.a
 
 
 
-
-
-
-
-1
+###设计思路
+店铺类别全部放在二级分类下，所以parent_id要not null

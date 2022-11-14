@@ -3,7 +3,9 @@ package com.xinsheng.o2o.web.shopadmin;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -21,8 +23,10 @@ import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import com.fasterxml.jackson.databind.ObjectMapper;
 //import com.sun.imageio.plugins.common.ImageUtil;
 import com.xinsheng.o2o.dto.ShopExecution;
+import com.xinsheng.o2o.entity.Area;
 import com.xinsheng.o2o.entity.PersonInfo;
 import com.xinsheng.o2o.entity.Shop;
+import com.xinsheng.o2o.entity.ShopCategory;
 import com.xinsheng.o2o.enums.ShopStateEnum;
 import com.xinsheng.o2o.service.AreaService;
 import com.xinsheng.o2o.service.ShopCategoryService;
@@ -44,9 +48,18 @@ public class ShopManagementController {
 	@ResponseBody
 	private Map<String,Object> getshopinitinfo(){
 		Map<String,Object>  modelMap = new HashMap<String,Object>();
-		
-		
-		
+		List<ShopCategory> shopCategoryList =new ArrayList<ShopCategory>();
+		List<Area> areaList =new ArrayList<Area>();
+		try {
+			shopCategoryList = shopCategoryService.getShopCategoryList( new ShopCategory());
+			areaList =areaService.getAreaList();
+			modelMap.put("shopCategoryList", shopCategoryList);
+			modelMap.put("areaList", areaList);
+			modelMap.put("success", true);
+		} catch (Exception e) {
+			modelMap.put("success", false);
+			modelMap.put("errMsg", e.getMessage());
+		}
 		
 		
 		

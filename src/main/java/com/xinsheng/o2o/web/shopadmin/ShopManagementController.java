@@ -2,6 +2,7 @@ package com.xinsheng.o2o.web.shopadmin;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -113,30 +114,40 @@ public class ShopManagementController {
 			PersonInfo owner =new PersonInfo();
 			owner.setUserId(1L);
 			shop.setOwner(owner);
-			File shopImgFile = new File(PathUtil.getImgBasePath() + ImageUtil.getRandomFileName());
+//			File shopImgFile = new File(PathUtil.getImgBasePath() + ImageUtil.getRandomFileName());
+//			
+//			try {
+//				shopImgFile.createNewFile();
+//			} catch (Exception e) {
+//				modelMap.put("success", false);
+//				modelMap.put("errMsg", e.toString());
+//				return modelMap;
+//			}
+//			try {
+//				inputStreamtoFile(shopImg.getInputStream(), shopImgFile);
+//			} catch (Exception e) {
+//				modelMap.put("success", false);
+//				modelMap.put("errMsg", e.toString());
+//				return modelMap;
+//			}
 			
+			ShopExecution se;
 			try {
-				shopImgFile.createNewFile();
-			} catch (Exception e) {
+				se = ShopService.addShop(shop,shopImg.getInputStream(),shopImg.getOriginalFilename());
+				if (se.getState() == ShopStateEnum.CHECK.getState()) {
+					modelMap.put("succcess", true);
+				} else {
+					modelMap.put("success", false);
+					modelMap.put("errMsg", se.getStateInfo());
+				}
+			} catch (RuntimeException e) {
 				modelMap.put("success", false);
-				modelMap.put("errMsg", e.toString());
-				return modelMap;
-			}
-			try {
-				inputStreamtoFile(shopImg.getInputStream(), shopImgFile);
-			} catch (Exception e) {
+				modelMap.put("errMsg", e.getMessage());
+			} catch (IOException e) {
 				modelMap.put("success", false);
-				modelMap.put("errMsg", e.toString());
-				return modelMap;
+				modelMap.put("errMsg", e.getMessage());
 			}
 			
-			ShopExecution se = ShopService.addShop(shop,shopImg);
-			if (se.getState() == ShopStateEnum.CHECK.getState()) {
-				modelMap.put("succcess", true);
-			} else {
-				modelMap.put("success", false);
-				modelMap.put("errMsg", se.getStateInfo());
-			}
 			return modelMap;
 		} else {
 			modelMap.put("success", false);
@@ -153,37 +164,32 @@ public class ShopManagementController {
 
 	
 	}
-	private static void inputStreamtoFile(InputStream ins ,File file) {
-		FileOutputStream os =null;
-		try {
-			os = new FileOutputStream(file);
-			int bytesRead = 0;
-			byte[] buffer =new byte[1024];
-			while ((bytesRead = ins.read(buffer))!=-1) {
-				os.write(buffer,0,bytesRead);
-				
-			}
-		} catch (Exception e) {
-			throw new RuntimeException("调用inputStreamtoFile产生异常"+e.getMessage());
-		}finally{
-			try {
-				if (os!=null) {
-					os.close();
-				}
-				if (ins!=null) {
-					ins.close();
-				}
-				
-			} catch (Exception e) {
-				throw new RuntimeException("调用inputStreamtoFile关闭io产生异常"+e.getMessage());
-			}
-		}
-		
-		
-		
-		
-		
-	}
-	
+//	private static void inputStreamtoFile(InputStream ins ,File file) {
+//		FileOutputStream os =null;
+//		try {
+//			os = new FileOutputStream(file);
+//			int bytesRead = 0;
+//			byte[] buffer =new byte[1024];
+//			while ((bytesRead = ins.read(buffer))!=-1) {
+//				os.write(buffer,0,bytesRead);
+//				
+//			}
+//		} catch (Exception e) {
+//			throw new RuntimeException("调用inputStreamtoFile产生异常"+e.getMessage());
+//		}finally{
+//			try {
+//				if (os!=null) {
+//					os.close();
+//				}
+//				if (ins!=null) {
+//					ins.close();
+//				}
+//				
+//			} catch (Exception e) {
+//				throw new RuntimeException("调用inputStreamtoFile关闭io产生异常"+e.getMessage());
+//			}
+//		}
+//		
+//	}
 	
 }

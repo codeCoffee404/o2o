@@ -1,6 +1,7 @@
 package com.xinsheng.o2o.service.impl;
 
 
+import java.io.InputStream;
 import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +26,7 @@ public class ShopServiceImpl implements ShopService{
 	private ShopDao shopDao;
 	
 	@Transactional
-	public ShopExecution addShop(Shop shop, CommonsMultipartFile shopImg) throws ShopOperationException {
+	public ShopExecution addShop(Shop shop, InputStream shopImgInputStream,String fileName) throws ShopOperationException {
 		if(shop == null) {//如果店铺信息为空，则返回枚举类型的null_shop
 			return new ShopExecution(ShopStateEnum.NULL_SHOP);	
 		}
@@ -39,10 +40,10 @@ public class ShopServiceImpl implements ShopService{
 			if(effectedNum <= 0) {
 				throw new ShopOperationException("店铺创建失败");
 			}else {
-				if(shopImg!=null) {
+				if(shopImgInputStream!=null) {
 					//存储图片,传入shop实体对象和shopImg图片
 					try {
-						addShopImg(shop, shopImg);
+						addShopImg(shop, shopImgInputStream,fileName);
 					}catch(Exception e) {
 						throw new ShopOperationException("addShopImg error:" + e.getMessage());
 					}
@@ -71,10 +72,10 @@ public class ShopServiceImpl implements ShopService{
 //		
 //	}
 
-	private void addShopImg(Shop shop, CommonsMultipartFile shopImg) {
+	private void addShopImg(Shop shop, InputStream shopImgInputStream ,String fileName) {
 		//获取shop图片目录的相对值路径
 		String dest = PathUtil.getShopImagePath(shop.getShopId());
-		String shopImgAddr = ImageUtil.generateThumbnail(shopImg, dest);
+		String shopImgAddr = ImageUtil.generateThumbnail(shopImgInputStream, fileName,dest);
 		shop.setShopImg(shopImgAddr);
 		
 	}

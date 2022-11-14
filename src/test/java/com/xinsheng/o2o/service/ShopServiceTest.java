@@ -1,6 +1,9 @@
 package com.xinsheng.o2o.service;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.util.Date;
 
 import org.junit.Test;
@@ -20,7 +23,7 @@ public class ShopServiceTest extends BaseTest{
 	private ShopService shopService;
 	
 	@Test
-	public void testAddShop() {
+	public void testAddShop() throws FileNotFoundException {
 		
 		    Shop shop = new Shop();
 			PersonInfo owner =new PersonInfo();
@@ -33,10 +36,10 @@ public class ShopServiceTest extends BaseTest{
 			//ShopCategory.setShopCategoryId(1L);
 			shop.setOwner(owner);
 			shop.setArea(area);
-			shop.setShopName("mytestservice");
-			shop.setShopDesc("mytestservice");
-			shop.setShopAddr("testaddrservice");
-			shop.setPhone("138105service");
+			shop.setShopName("mytestservice33");
+			shop.setShopDesc("mytestservice33");
+			shop.setShopAddr("testaddrservice33");
+			shop.setPhone("138105service33");
 			
 			shop.setCreateTime(new Date());
 			shop.setLastEditTime(new Date());
@@ -44,7 +47,8 @@ public class ShopServiceTest extends BaseTest{
 			shop.setAdvice("…Û∫À÷–");
 			shop.setShopCategory(sc);
 			File shopImg = new File("F:\\\\headgithub.png");
-			ShopExecution se = ShopService.addShop(shop,shopImg);
+			InputStream is = new FileInputStream(shopImg);
+			ShopExecution se = ShopService.addShop(shop,is,shopImg.getName());
 		
 	}
 }

@@ -32,6 +32,7 @@ import com.xinsheng.o2o.enums.ShopStateEnum;
 import com.xinsheng.o2o.service.AreaService;
 import com.xinsheng.o2o.service.ShopCategoryService;
 import com.xinsheng.o2o.service.ShopService;
+import com.xinsheng.o2o.util.CodeUtil;
 import com.xinsheng.o2o.util.HttpServletRequestUtil;
 import com.xinsheng.o2o.util.PathUtil;
 import com.xinsheng.o2o.util.ImageUtil;
@@ -74,8 +75,13 @@ public class ShopManagementController {
 		//店铺在注册的表单信息都会存到这个request里，返回类型是map，用来返回一些必要的键值对
 		// 因为返回类型是Map<String,Object>键值对，然后用@ResponseBody注解转化为json对象
 		
-		//1.接受并转换响应的参数，包括店铺信息及图片信息
+		//1.接受并转换响应的参数，包括店铺信息及图片、验证码信息
 		Map<String,Object> modelMap=new HashMap<String,Object>();
+		if (!CodeUtil.checkVerifyCode(request)) {
+			modelMap.put("success", false);
+			modelMap.put("errMsg", "验证码输入错误 ");
+			return modelMap;
+		}
 		String shopStr =  HttpServletRequestUtil.getString(request,"shopStr");
 		ObjectMapper mapper = new ObjectMapper();
 		Shop shop = null;

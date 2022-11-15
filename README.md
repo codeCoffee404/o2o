@@ -10,6 +10,143 @@ tomcat9<br>
 ##IDE<br>
 eclipse2018-9<br>
 
+## 前言
+
+o2o项目希望完成一个文件共享系统，采用现阶段公司常用技术来实现，例如Redis,spring、springmvc、 Mybatis, Nginx等。总的目的是用来熟悉这些技术。
+
+## 目录
+
+  - [前言](#前言)
+  - [项目介绍](#项目介绍)
+  - [项目演示](#项目演示)
+    - [用户端演示](#用户端演示)
+    - 商家端演示
+    - [管理端演示](#管理端演示)
+  - [技术选型](#技术选型)
+    - [后端技术](#后端技术)
+    - [前端技术](#前端技术)
+  - [环境搭建](#环境搭建)
+    - [开发工具](#开发工具)
+    - [开发环境](#开发环境)
+    - [搭建具体环境](#搭建具体环境)
+  - [相关学习文档](#相关学习文档)
+  - [数据库设计](#数据库设计)
+  - [前后端接口文档](#前后端接口文档)
+
+
+
+## 项目介绍
+
+file_management_sys 是一个文件共享系统，包括前端文件展示系统和后台管理系统，基于SpringBoot + MyBatis实现。
+
+## 项目演示
+
+### 用户端演示
+
+### 商家端演示
+
+### 管理端演示
+
+
+
+
+## 技术选型
+
+### 后端技术
+
+| 技术        | 说明                  | 官网                                        | demo地址 |
+| :---------- | :-------------------- | :------------------------------------------ | :------- |
+| Spring Boot | 容器                  | https://spring.io/projects/spring-boot      |          |
+| MyBatis     | ORM 框架              | https://mybatis.org/mybatis-3/zh/index.html |          |
+| MySQL       | 关系型数据库          | https://dev.mysql.com/doc/refman/8.0/en/    |          |
+| Redis       | 分布式缓存            | https://redis.io/                           |          |
+| Nginx       | 负载均衡              | https://www.nginx.com/                      |          |
+| LogBack     | 日志                  | http://logback.qos.ch/manual/index.html     |          |
+| Lombok      | 简化对象封装工具      | https://github.com/rzwitserloot/lombok      |          |
+| Swagger     | 生成前后端api接口文档 | https://swagger.io/specification/v2/        |          |
+
+### 前端技术
+
+| 技术       | 说明         | 官网                  |
+| :--------- | :----------- | :-------------------- |
+| SUI Mobile | 响应式UI组件 | http://m.sui.abdl.cn/ |
+
+## 环境搭建
+
+初始搭建均基于阿里云ECS服务器的centos系统。
+
+### 开发工具
+
+| 工具                  | 说明                                                         | 官网                                         |
+| :-------------------- | :----------------------------------------------------------- | :------------------------------------------- |
+| IDEA                  | 开发IDE                                                      | https://www.jetbrains.com/idea/              |
+| Redis Desktop Manager | redis客户端连接工具                                          | https://redisdesktop.com/download            |
+| MySQL workbench       | MySQL 可视化工具                                             | https://www.mysql.com/cn/products/workbench/ |
+| GitHub                | 版本管理工具                                                 | https://github.com                           |
+| Maven                 | 项目管理                                                     | https://maven.apache.org                     |
+| PostMan               | 接口请求测试                                                 | https://www.getpostman.com/                  |
+| Gifox                 | gif录制工具                                                  | https://gifox.io/                            |
+| Axure                 | 原型设计工具                                                 | https://www.axure.com/                       |
+| bootschool            | banner 生成工具                                              | https://www.bootschool.net/ascii             |
+| MarkDown              | MarkDown语法说明                                             | http://www.markdown.cn                       |
+| RoeketMQ 可视化控制台 | 在子项目rocketmq-console里面，打包mvn clean package -Dmaven.test.skip=true | https://github.com/apache/rocketmq-externals |
+
+
+### 开发环境
+
+| 工具       | 版本   | 官网                                                         |
+| :--------- | :----- | :----------------------------------------------------------- |
+| SpringBoot | 2.2.4  | https://spring.io/projects/spring-boot                       |
+| JDK        | 1.8    | https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html |
+| Mysql      | 5.7.26 | https://www.mysql.com/                                       |
+| Redis      | 4.0.10 | https://redis.io                                             |
+| Nginx      | 待定   | https://www.nginx.com                                        |
+
+### 搭建具体环境(docker搭建，基于centos 7)
+
+  首先安装docker，启动docker systemctl start docker.
+  注意： 当各个容器启动后，在服务器端的安全组一定要配置相应端口，不然外部访问不到。
+
+ - 1.安装 MySQL  
+   1.1 拉取最新镜像 docker pull centos/mysql-57-centos7  
+   1.2 运行一个容器 docker run -id --name=mysql-57-centos7 -p 3306:3306 -e MYSQL_ROOT_PASSWORD=717294 centos/mysql-57-centos7  
+
+ - 2.安装 Redis 4.0.10  
+   2.1  拉取redis镜像 docker pull redis  
+   2.2  运行redis容器 docker run -id --name=redis -p 6379:6379 redis  
+
+ - 3.安装 RocketMQ 4.6.0    
+ - 4.安装 nginx1.16.1  
+   4.1 安装相关环境   
+         &nbsp;&nbsp; yum install gcc-c++  
+         &nbsp;&nbsp; yum install -y pcre pcre-devel  
+         &nbsp;&nbsp; yum install -y zlib zlib-devel  
+         &nbsp;&nbsp; yum install -y openssl openssl-devel  
+   4.2 获取 安装包 wget -c https://nginx.org/download/nginx-1.16.1.tar.gz  
+   4.3 解压安装   
+         &nbsp;&nbsp; tar -zxvf nginx-1.16.1.tar.gz  
+         &nbsp;&nbsp; cd nginx-1.16.1  
+         &nbsp;&nbsp; ./configure  
+         &nbsp;&nbsp; make install  
+    4.4 运行  
+         &nbsp;&nbsp; cd /usr/local/nginx/sbin/  
+         &nbsp;&nbsp; ./nginx  
+
+## 相关学习文档
+
+| 技术                      | 说明                          | 网址                                                         |
+| :------------------------ | :---------------------------- | :----------------------------------------------------------- |
+| Spring Data Elasticsearch | spring data整合 Elasticsearch | https://github.com/spring-projects/spring-data-elasticsearch/blob/master/README.adoc |
+| RocketMQ                  | 阿里中间件团队博客            | http://jm.taobao.org/2017/01/12/rocketmq-quick-start-in-10-minutes/ |
+
+## 数据库设计
+
+
+
+## 前后端接口文档
+
+
+
 后台修改dynamic web moudle 版本，到3.1＋，以达到更高的性能
 
 步骤：修改项目文件夹下的.setting文件 org.eclipse.wst.common.project.facet.core.xml
@@ -33,7 +170,13 @@ eclipse2018-9<br>
 - dto弥补entity的不足
 - interceptor拦截器
 - WEB-INF的安全性，浏览器输入URL，不能访问其目录下HTML
-- mapper.xml里面的<select>标签id即对应的方法接口名，在该标签下写该方法所需要的SQL语句。例：<br>
+- mapper.xml里面的
+
+  ```xml
+  <select></select>
+  ```
+
+  标签id即对应的方法接口名，在该标签下写该方法所需要的SQL语句。例：<br>
 
 ```xml
 <mapper namespace="com.xinsheng.o2o.dao.AreaDao">
@@ -72,28 +215,29 @@ public interface AreaDao {
 - ***主要检查包名，namespace，方法名等能否对应上***。开发过程中有时候敲错一个字母都有问题，需要认真的检查。对于这块地方，建议粘贴复制，不要自己手敲。  本次的bug是包名后面出现了空格<br>
 
   ```xml
-  <mapper namespace="com.xinsheng.o2o.dao.AreaDao     空格          ">
+  <mapper namespace="com.xinsheng.o2o.dao.AreaDao     空格          "></mapper>
   ```
 
   1.xml 文件中是有中文注释，有的话全部删除<br>
 
-  1. xml 的文件名 是否与 dao 接口名保持一致<br>
-
-  [参考链接]:https://blog.csdn.net/weixin_43570367/article/details/103147854
-
-  <br>
+  ​         xml 的文件名 是否与 dao 接口名保持一致[参考链接](https://blog.csdn.net/weixin_43570367/article/details/103147854)<br>
 
   
-  
+
   - impl实现层 接口 用implements  + 对应实现类
-  - RequestMethod.POST 相对安全，，而GET 的参数信息都会反映在URL上
-  - JUnit测试要写@Test注解
-  	<insert id="insertShop" useGeneratedKeys="true" keyProperty="shopId"
-		keyColumn="shop_id">属性之间要有空格
-  
-  
 
-mybatis支持动态SQL语句，也就是更新A而不更新B、更新B而不更新A、两者都更新的情况那就要写三条语句，那利用mybatis的，set标签即可用一条实现，例如：
+  - RequestMethod.POST 相对安全，，而GET 的参数信息都会反映在URL上
+  
+  - JUnit测试要写@Test注解
+  
+    属性之间要有空格
+  
+	  ```xml
+    <insert id="insertShop" useGeneratedKeys="true" keyProperty="shopId" keyColumn="shop_id"></insert>
+    ```
+  
+    mybatis支持动态SQL语句，也就是更新A而不更新B、更新B而不更新A、两者都更新的情况那就要写三条语句，那利用mybatis的，set标签即可用一条实现，例如：
+  
 
 ```xml
 <update id="updateShop" parameterType="com.xinsheng.o2o.entity.Shop">
@@ -116,9 +260,27 @@ mybatis支持动态SQL语句，也就是更新A而不更新B、更新B而不更�
 	</update>
 ```
 
-[图片处理工具Thumbnail]([示例 ·咕咕鸟/缩略图维基 (github.com)](https://github.com/coobird/thumbnailator/wiki/Examples))
+[图片处理工具Thumbnail](https://github.com/coobird/thumbnailator/wiki/Examples)
 
 [博客项目集成PDF.js后，文件在阿里云对象存储oss后出现跨域问题解决方案](https://blog.csdn.net/MASILEJFOAISEGJIAE/article/details/126162430)
 
 
+
+在静态的方法中不能直接调用非静态的方法或属性。因为一个类的静态方法在这个Class文件被加载之后，就可以由这个Class类型对象来调用，而非静态的方法需要一个实例对象，有可能还未被创建，所以为了避免在静态方法中调用一个还不存在的实例对象的非静态方法，编译期就会直接阻止这个行为。
+
+解决的方法有两种，
+
+第一种是将被调用的方法设置成静态方法；
+第二种是new本类，然后通过实例来调用。
+
+**BUG**
+
+在mybatis里面的ShopCategoryDao.xml里面有parentId,而在实体类里面private ShopCategory parent;漏掉了id
+
+Error evaluating expression 'shopCategoryCondition.parentId!=null'. Cause: org.apache.ibatis.ognl.NoSuchPropertyException: com.xinsheng.o2o.entity.ShopCategory.parentId
+
+
+
+###设计思路
+店铺类别全部放在二级分类下，所以parent_id要not null
 

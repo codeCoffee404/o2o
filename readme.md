@@ -10,6 +10,143 @@ tomcat9<br>
 ##IDE<br>
 eclipse2018-9<br>
 
+## 前言
+
+o2o项目希望完成一个文件共享系统，采用现阶段公司常用技术来实现，例如Redis,spring、springmvc、 Mybatis, Nginx等。总的目的是用来熟悉这些技术。
+
+## 目录
+
+  - [前言](#前言)
+  - [项目介绍](#项目介绍)
+  - [项目演示](#项目演示)
+    - [用户端演示](#用户端演示)
+    - 商家端演示
+    - [管理端演示](#管理端演示)
+  - [技术选型](#技术选型)
+    - [后端技术](#后端技术)
+    - [前端技术](#前端技术)
+  - [环境搭建](#环境搭建)
+    - [开发工具](#开发工具)
+    - [开发环境](#开发环境)
+    - [搭建具体环境](#搭建具体环境)
+  - [相关学习文档](#相关学习文档)
+  - [数据库设计](#数据库设计)
+  - [前后端接口文档](#前后端接口文档)
+
+
+
+## 项目介绍
+
+file_management_sys 是一个文件共享系统，包括前端文件展示系统和后台管理系统，基于SpringBoot + MyBatis实现。
+
+## 项目演示
+
+### 用户端演示
+
+### 商家端演示
+
+### 管理端演示
+
+
+
+
+## 技术选型
+
+### 后端技术
+
+| 技术        | 说明                  | 官网                                        | demo地址 |
+| :---------- | :-------------------- | :------------------------------------------ | :------- |
+| Spring Boot | 容器                  | https://spring.io/projects/spring-boot      |          |
+| MyBatis     | ORM 框架              | https://mybatis.org/mybatis-3/zh/index.html |          |
+| MySQL       | 关系型数据库          | https://dev.mysql.com/doc/refman/8.0/en/    |          |
+| Redis       | 分布式缓存            | https://redis.io/                           |          |
+| Nginx       | 负载均衡              | https://www.nginx.com/                      |          |
+| LogBack     | 日志                  | http://logback.qos.ch/manual/index.html     |          |
+| Lombok      | 简化对象封装工具      | https://github.com/rzwitserloot/lombok      |          |
+| Swagger     | 生成前后端api接口文档 | https://swagger.io/specification/v2/        |          |
+
+### 前端技术
+
+| 技术       | 说明         | 官网                  |
+| :--------- | :----------- | :-------------------- |
+| SUI Mobile | 响应式UI组件 | http://m.sui.abdl.cn/ |
+
+## 环境搭建
+
+初始搭建均基于阿里云ECS服务器的centos系统。
+
+### 开发工具
+
+| 工具                  | 说明                                                         | 官网                                         |
+| :-------------------- | :----------------------------------------------------------- | :------------------------------------------- |
+| IDEA                  | 开发IDE                                                      | https://www.jetbrains.com/idea/              |
+| Redis Desktop Manager | redis客户端连接工具                                          | https://redisdesktop.com/download            |
+| MySQL workbench       | MySQL 可视化工具                                             | https://www.mysql.com/cn/products/workbench/ |
+| GitHub                | 版本管理工具                                                 | https://github.com                           |
+| Maven                 | 项目管理                                                     | https://maven.apache.org                     |
+| PostMan               | 接口请求测试                                                 | https://www.getpostman.com/                  |
+| Gifox                 | gif录制工具                                                  | https://gifox.io/                            |
+| Axure                 | 原型设计工具                                                 | https://www.axure.com/                       |
+| bootschool            | banner 生成工具                                              | https://www.bootschool.net/ascii             |
+| MarkDown              | MarkDown语法说明                                             | http://www.markdown.cn                       |
+| RoeketMQ 可视化控制台 | 在子项目rocketmq-console里面，打包mvn clean package -Dmaven.test.skip=true | https://github.com/apache/rocketmq-externals |
+
+
+### 开发环境
+
+| 工具       | 版本   | 官网                                                         |
+| :--------- | :----- | :----------------------------------------------------------- |
+| SpringBoot | 2.2.4  | https://spring.io/projects/spring-boot                       |
+| JDK        | 1.8    | https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html |
+| Mysql      | 5.7.26 | https://www.mysql.com/                                       |
+| Redis      | 4.0.10 | https://redis.io                                             |
+| Nginx      | 待定   | https://www.nginx.com                                        |
+
+### 搭建具体环境(docker搭建，基于centos 7)
+
+  首先安装docker，启动docker systemctl start docker.
+  注意： 当各个容器启动后，在服务器端的安全组一定要配置相应端口，不然外部访问不到。
+
+ - 1.安装 MySQL  
+   1.1 拉取最新镜像 docker pull centos/mysql-57-centos7  
+   1.2 运行一个容器 docker run -id --name=mysql-57-centos7 -p 3306:3306 -e MYSQL_ROOT_PASSWORD=717294 centos/mysql-57-centos7  
+
+ - 2.安装 Redis 4.0.10  
+   2.1  拉取redis镜像 docker pull redis  
+   2.2  运行redis容器 docker run -id --name=redis -p 6379:6379 redis  
+
+ - 3.安装 RocketMQ 4.6.0    
+ - 4.安装 nginx1.16.1  
+   4.1 安装相关环境   
+         &nbsp;&nbsp; yum install gcc-c++  
+         &nbsp;&nbsp; yum install -y pcre pcre-devel  
+         &nbsp;&nbsp; yum install -y zlib zlib-devel  
+         &nbsp;&nbsp; yum install -y openssl openssl-devel  
+   4.2 获取 安装包 wget -c https://nginx.org/download/nginx-1.16.1.tar.gz  
+   4.3 解压安装   
+         &nbsp;&nbsp; tar -zxvf nginx-1.16.1.tar.gz  
+         &nbsp;&nbsp; cd nginx-1.16.1  
+         &nbsp;&nbsp; ./configure  
+         &nbsp;&nbsp; make install  
+    4.4 运行  
+         &nbsp;&nbsp; cd /usr/local/nginx/sbin/  
+         &nbsp;&nbsp; ./nginx  
+
+## 相关学习文档
+
+| 技术                      | 说明                          | 网址                                                         |
+| :------------------------ | :---------------------------- | :----------------------------------------------------------- |
+| Spring Data Elasticsearch | spring data整合 Elasticsearch | https://github.com/spring-projects/spring-data-elasticsearch/blob/master/README.adoc |
+| RocketMQ                  | 阿里中间件团队博客            | http://jm.taobao.org/2017/01/12/rocketmq-quick-start-in-10-minutes/ |
+
+## 数据库设计
+
+
+
+## 前后端接口文档
+
+
+
 后台修改dynamic web moudle 版本，到3.1＋，以达到更高的性能
 
 步骤：修改项目文件夹下的.setting文件 org.eclipse.wst.common.project.facet.core.xml
@@ -146,3 +283,4 @@ Error evaluating expression 'shopCategoryCondition.parentId!=null'. Cause: org.a
 
 ###设计思路
 店铺类别全部放在二级分类下，所以parent_id要not null
+

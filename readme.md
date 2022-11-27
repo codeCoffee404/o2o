@@ -321,7 +321,8 @@ public interface AreaDao {
 
 Error evaluating expression 'shopCategoryCondition.parentId!=null'. Cause: org.apache.ibatis.ognl.NoSuchPropertyException: com.xinsheng.o2o.entity.ShopCategory.parentId
 
-
+was not registered for synchronization because synchronization is not active
+[解决连接](https://blog.csdn.net/ChinaMuZhe/article/details/103886730)
 
 ###设计思路
 店铺类别全部放在二级分类下，所以parent_id要not null

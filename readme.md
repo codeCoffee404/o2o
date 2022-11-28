@@ -323,6 +323,7 @@ Error evaluating expression 'shopCategoryCondition.parentId!=null'. Cause: org.a
 
 was not registered for synchronization because synchronization is not active
 [解决连接](https://blog.csdn.net/ChinaMuZhe/article/details/103886730)
+[解决措施2](https://blog.csdn.net/weixin_43304253/article/details/128025661)
 
 ###设计思路
 店铺类别全部放在二级分类下，所以parent_id要not null

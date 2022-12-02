@@ -5,6 +5,14 @@ import com.xinsheng.o2o.entity.Shop;
 public interface ShopDao {
 
 	/*
+	 * 通过shopid查询店铺
+	 * @param shop
+	 * @return shop
+	 */
+	Shop queryByShopId(long shopId);
+	
+	
+	/*
 	 * 新增店铺
 	 * @param shop
 	 * @return 

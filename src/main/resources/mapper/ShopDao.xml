@@ -7,7 +7,6 @@
 
 	<resultMap id="shopMap" type="com.xinsheng.o2o.entity.Shop">
 		<id column="shop_id" property="shopId" />
-		
 		<result column="shop_name" property="shopName" />
 		<result column="shop_desc" property="shopDesc" />
 		<result column="shop_addr" property="shopAddr" />
@@ -40,8 +39,6 @@
 		<!-- 具体的sql -->
 		SELECT
 		s.shop_id,
-		
-		
 		s.shop_name,
 		s.shop_desc,
 		s.shop_addr,

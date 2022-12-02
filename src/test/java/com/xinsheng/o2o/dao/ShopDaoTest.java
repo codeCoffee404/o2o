@@ -19,6 +19,12 @@ import com.xinsheng.o2o.entity.ShopCategory;
 public class ShopDaoTest extends BaseTest {
 	@Autowired
 	private ShopDao shopDao;
+	public void testQueryByShopId() throws Exception {
+		long shopId = 1;
+		Shop shop = shopDao.queryByShopId(shopId);
+		System.out.println("areaId:" + shop.getArea().getAreaId());
+		System.out.println("areaName:" + shop.getArea().getAreaName());
+	}
 //	@Test
 //	@Ignore
 //	public void testInsertShop() {
@@ -46,17 +52,18 @@ public class ShopDaoTest extends BaseTest {
 //		int effectedNum = shopDao.insertShop(shop);
 //		assertEquals(1, effectedNum);
 //	}
-	@Test
-	public void testUpdateShop() {
-		Shop shop = new Shop();
-		shop.setShopId(1L);
-		shop.setShopDesc("≤‚ ‘update√Ë ˆ");
-		shop.setShopAddr("testaddr1222");
-		shop.setPhone("13810523333");
-		shop.setLastEditTime(new Date());
-		int effectedNum = shopDao.updateShop(shop);
-		assertEquals(1, effectedNum);
-	}
+//	@Test
+//	@Ignore
+//	public void testUpdateShop() {
+//		Shop shop = new Shop();
+//		shop.setShopId(1L);
+//		shop.setShopDesc("≤‚ ‘update√Ë ˆ");
+//		shop.setShopAddr("testaddr1222");
+//		shop.setPhone("13810523333");
+//		shop.setLastEditTime(new Date());
+//		int effectedNum = shopDao.updateShop(shop);
+//		assertEquals(1, effectedNum);
+//	}
 }
 
 

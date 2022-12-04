@@ -36,7 +36,7 @@ o2o项目希望完成一个文件共享系统，采用现阶段公司常用技�
 [本项目面试总结](#环境搭建)
 
 - [MySQL存储引擎InnoDB与Myisam的区别](#MySQL存储引擎InnoDB与Myisam的区别)
-- [开发环境](#开发环境)
+- [mysql主从分离](#mysql主从分离)
 - [搭建具体环境](#搭建具体环境)
 
 ## 项目介绍
@@ -161,11 +161,33 @@ file_management_sys 是一个文件共享系统，包括前端文件展示系统
 | **事务处理上方面**                              | MyISAM类型的表强调的是性能，其执行数度比InnoDB类型更快，但是不提供事务支持 | InnoDB提供事务支持事务，外部键（foreign key）等高级数据库功能 |
 | **SELECT  UPDATE,INSERT**，**Delete**，**操作** | 如果执行大量的SELECT，MyISAM是更好的选择                     | **1.**如果你的数据执行大量的**INSERT**或**UPDATE**，出于性能方面的考虑，应该使用InnoDB表<br /> **2.DELETE  FROM table**时，InnoDB不会重新建立表，而是一行一行的删除。**3.LOAD  TABLE FROM MASTER**操作对InnoDB是不起作用的，解决方法是首先把InnoDB表改成MyISAM表，导入数据后再改成InnoDB表，但是对于使用的额外的InnoDB特性（例如外键）的表不适用 |
 
+与 MyISAM相同的一点是，InnoDB 也采用 B+Tree这种数据结构来实现 B-Tree索引。而很大的区别在于，InnoDB 存储引擎采用“聚集索引”的数据存储方式实现B-Tree索引，所谓“聚集”，就是指数据行和相邻的键值紧凑地存储在一起，注意 InnoDB 只能聚集一个叶子页（16K）的记录（即聚集索引满足一定的范围的记录），因此包含相邻键值的记录可能会相距甚远。在 InnoDB 中，表被称为 索引组织表（index organized table），InnoDB 按照主键构造一颗 B+Tree （如果没有主键，则会选择一个唯一的并且非空索引替代，如果没有这样的索引，InnoDB则会隐式地定义一个主键来作为聚集索引），同时叶子页中存放整张表的行记录数据，也可以将聚集索引的叶子节点称为数据页，非叶子页可以看做是叶子页的稀疏索引。
 
+全表扫描
 
-### 开发环境
+当InnoDB做全表扫描时并不高效，因为 InnoDB 实际上并没有顺序读取,在大多情况下是在随机读取。做全表扫描时,InnoDB 会按主键顺序扫描页面和行。这应用于所有的InnoDB 表，包括碎片化的表。如果主键页表没有碎片（存储主键和行的页表),全表扫描是相当快，因为读取顺序接近物理存储顺序。但是当主键页有碎片时，该扫描就会变得十分缓慢
 
+---------------------------------------------------------------------划水线---------------------------------------------
 
+### mysql主从分离
+-----------------------------------------划水----------------------------------------------------------------------------
+数据库层面主从分离配置
+
+将读操作和写操作分离到不同的数据库上，避免主服务器出现性能瓶颈
+
+主服务器进行写操作时，不影响查询应用服务器的查询性能，降低阻塞，提高并发
+
+数据拥有多个容灾副本，提高数据安全性，同时当主服务器故障时，可立即切换到其他服务器，提高系统可用性
+代码层面读写分离
+当mysql服务器只有一台的时候，可能又以下的问题：1.读和写所有压力都由一台数据库承担，压力大 2.数据库服务器磁盘损坏则数据丢失，单点故障
+
+解决方案：准备两台MySQL，一台主(Master)服务器，一台从(Slave)服务器，主库的数据变更，需要同步到从库中(主从复制)。而用户在访问我们项目时，如果是写操作(insert、update、delete)，则直接操作主库；如果是读(select)操作，则直接操作从库(在这种读写分离的结构中，从库是可以有多个的)，这种结构我们称为 读写分离 。
+
+MySQL数据库默认是支持主从复制的。
+
+MySQL主从复制是一个异步的过程，底层是mysql数据库自带的二进制功能，就是一台或多台MySQL数据库（slave，即从库）从另一台MySQL数据库（master，即主库）进行日志的复制，然后再解析日志并应用到自身，最终实现从库和主库的数据保持一致。
+
+二进制日志：二进制日志BINLOG记录了所有DDL数据定义语言和DML数据操作语言，不包括数据查询语言。此日治对于灾难时数据恢复有重要作用，mysql的主从复制，就是binglog实现的。默认的mysql是未开启该日志的
 
 
 
@@ -305,8 +327,18 @@ public interface AreaDao {
 
 Error evaluating expression 'shopCategoryCondition.parentId!=null'. Cause: org.apache.ibatis.ognl.NoSuchPropertyException: com.xinsheng.o2o.entity.ShopCategory.parentId
 
-
+was not registered for synchronization because synchronization is not active
+[解决连接](https://blog.csdn.net/ChinaMuZhe/article/details/103886730)
+[解决措施2](https://blog.csdn.net/weixin_43304253/article/details/128025661)
 
 ###设计思路
 店铺类别全部放在二级分类下，所以parent_id要not null
+
+## Browsers support
+
+| [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/edge/edge_48x48.png" alt="IE / Edge" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)<br/>IE / Edge | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/firefox/firefox_48x48.png" alt="Firefox" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)<br/>Firefox | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/chrome/chrome_48x48.png" alt="Chrome" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)<br/>Chrome | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/safari/safari_48x48.png" alt="Safari" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)<br/>Safari | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/safari-ios/safari-ios_48x48.png" alt="iOS Safari" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)<br/>iOS Safari | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/samsung-internet/samsung-internet_48x48.png" alt="Samsung" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)<br/>Samsung | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/opera/opera_48x48.png" alt="Opera" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)<br/>Opera | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/opera-mini/opera-mini_48x48.png" alt="Opera Mini" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)<br/>Opera Mini | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/vivaldi/vivaldi_48x48.png" alt="Vivaldi" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)<br/>Vivaldi | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/yandex/yandex_48x48.png" alt="Yandex" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)<br/>Yandex | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/electron/electron_48x48.png" alt="Electron" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)<br/>Electron |
+| --------- | --------- | --------- | --------- | --------- | --------- | --------- | --------- | --------- | --------- | --------- |
+| IE11, Edge| last 2 versions| last 2 versions| last 4 versions| last 2 versions| last 2 versions| last 2 versions| last 2 versions| last 2 versions| last 2 versions| last 2 versions
+
+
 

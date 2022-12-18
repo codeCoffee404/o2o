@@ -358,3 +358,39 @@ was not registered for synchronization because synchronization is not active
 
 
 
+###  栈和堆的区别
+
+JVM是基于堆栈的虚拟机，JVM为新创建的线程都分配一个堆栈，也就是说，对于一个Java程序来说，它的运行就是通过对堆栈的操作来完成的。堆栈以帧为单位保存线程的状态。JVM对堆栈只进行两种操作：以帧为单位的压栈和出栈操作。
+
+差异：
+1). 堆内存用来存放由new创建的对象和数组
+2). 栈内存用来存放方法或者局部变量等
+3). 堆是先进先出，后进后出
+4). 栈是先进后出，后进先出
+5). 共享性的不同：
+
+> 栈内存是线程私有的
+> 堆内存是所有线程共有的
+
+css选择器的基础知识
+
+![](https://o2oresourse.oss-cn-hangzhou.aliyuncs.com/%E9%80%89%E6%8B%A9%E5%99%A8css.png)
+
+[参考链接](https://blog.csdn.net/weixin_41319237/article/details/120531326#:~:text=CSS%20%E2%80%94%E2%80%94%20%E9%80%89%E6%8B%A9%E5%99%A8%201%20%E7%9B%AE%E7%9A%84%E6%98%AF%E4%B8%BA%E4%BA%86%E9%80%89%E6%8B%A9%E6%9B%B4%E5%87%86%E7%A1%AE%E6%9B%B4%E7%B2%BE%E7%BB%86%E7%9A%84%E7%9B%AE%E6%A0%87%E5%85%83%E7%B4%A0%E6%A0%87%E7%AD%BE%E3%80%82%202%20%E5%A4%8D%E5%90%88%E9%80%89%E6%8B%A9%E5%99%A8%E5%B0%B1%E6%98%AF%E7%94%B1%E4%B8%A4%E4%B8%AA%E6%88%96%E8%80%85%E5%A4%9A%E4%B8%AA%E5%9F%BA%E7%A1%80%E9%80%89%E6%8B%A9%E5%99%A8%EF%BC%8C%E9%80%9A%E8%BF%87%E4%B8%8D%E5%90%8C%E6%96%B9%E5%BC%8F%E7%BB%84%E5%90%88%E8%80%8C%E6%88%90%E7%9A%84%E3%80%82%203%E3%80%81CSS%E9%80%89%E6%8B%A9%E5%99%A8%E7%9A%84%E4%B8%89%E5%A4%A7%E7%89%B9%E6%80%A7%EF%BC%9A,%E7%9B%B8%E5%90%8C%E9%80%89%E6%8B%A9%E5%99%A8%E7%9B%B8%E5%90%8C%E5%B1%9E%E6%80%A7%E8%AE%BE%E7%BD%AE%E7%9B%B8%E5%90%8C%E6%A0%B7%E5%BC%8F%EF%BC%8C%E6%AD%A4%E6%97%B6%E4%B8%80%E4%B8%AA%E6%A0%B7%E5%BC%8F%E4%BC%9A%E8%A6%86%E7%9B%96%E5%8F%A6%E4%B8%80%E4%B8%AA%E6%A0%B7%E5%BC%8F%E3%80%82%204%20%E6%A0%B7%E5%BC%8F%E5%86%B2%E7%AA%81%E9%81%B5%E5%BE%AA%E7%9A%84%E6%98%AF%E5%B0%B1%E8%BF%91%E5%8E%9F%E5%88%99%E3%80%82%205%20%E6%A0%B7%E5%BC%8F%E4%B8%8D%E5%86%B2%E7%AA%81%E5%88%99%E4%B8%8D%E4%BC%9A%E5%B1%82%E5%8F%A0%202%EF%BC%89%E7%BB%A7%E6%89%BF%E6%80%A7%EF%BC%88%E5%8D%B3%E5%AD%90%E6%89%BF%E7%88%B6%E4%B8%9A%EF%BC%89%20%E5%AD%90%E6%A0%87%E7%AD%BE%E4%BC%9A%E7%BB%A7%E6%89%BF%E7%88%B6%E7%BA%A7%E7%9A%84%E6%9F%90%E4%BA%9B%E6%A0%B7%E5%BC%8F%EF%BC%8C%E5%A6%82%E6%96%87%E6%9C%AC%E9%A2%9C%E8%89%B2%E3%80%81%E5%AD%97%E4%BD%93%E7%AD%89%20%E4%BB%A5text-%E3%80%81font-%E3%80%81line-%E5%BC%80%E5%A4%B4%E7%9A%84%E5%85%83%E7%B4%A0%E4%BB%A5%E5%8F%8Acolor%E5%B1%9E%E6%80%A7%E7%AD%89%E9%83%BD%E5%8F%AF%E4%BB%A5%E7%BB%A7%E6%89%BF%E3%80%82)
+
+
+
+
+
+
+
+## Bootstrap 网格系统（Grid System）的工作原理
+
+网格系统通过一系列包含内容的行和列来创建页面布局。下面列出了 Bootstrap 网格系统是如何工作的：
+
+- 行必须放置在 **.container** class 内，以便获得适当的对齐（alignment）和内边距（padding）。
+- 使用行来创建列的水平组。
+- 内容应该放置在列内，且唯有列可以是行的直接子元素。
+- 预定义的网格类，比如 **.row** 和 **.col-xs-4**，可用于快速创建网格布局。LESS 混合类可用于更多语义布局。
+- 列通过内边距（padding）来创建列内容之间的间隙。该内边距是通过 **.rows** 上的外边距（margin）取负，表示第一列和最后一列的行偏移。
+- 网格系统是通过指定您想要横跨的十二个可用的列来创建的。例如，要创建三个相等的列，则使用三个 **.col-xs-4**。
